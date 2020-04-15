@@ -29,12 +29,21 @@ public class Curso {
 	}
 
 
+	public Integer getId() {
+		return id;
+	}
+
+
 	private Registro log;
 	
 	public Curso() {
 		super();
 		this.inscriptos = new ArrayList<Alumno>();
 		this.log = new Registro();
+	}
+	
+	public Curso(Integer id) {
+		this.id = id;
 	}
 	
 

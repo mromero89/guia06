@@ -16,6 +16,11 @@ public class Alumno implements Comparable<Alumno>{
 		aprobados = new ArrayList<Curso>();
 		
 	}
+	
+	public Alumno(String nombre, Integer lu) {
+		this.nombre = nombre;
+		this.nroLibreta = lu;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -33,13 +38,33 @@ public class Alumno implements Comparable<Alumno>{
 		return suma;
 	}
 
-	public void aprobar(Curso c) {
-		if (cursando.contains(c)) {
-			cursando.remove(c);
-			aprobados.add(c);
+	public boolean aprobar(Curso c) {
+		
+		
+		boolean b = false;
+		for(Curso cu : cursando) {
+			if (cu.getId().equals(c.getId().intValue())) {				
+				aprobados.add(c);
+				b = true;
+			}
+
+			/*else if (b == false)
+				System.out.println("No se encontraba inscripto al curso");*/
+						
+			
 		}
-		else
+		
+		if (b == true) {
+			cursando.remove(c);
+			return true;
+		}
+		else {
 			System.out.println("No se encontraba inscripto al curso");
+			return false;
+		}
+			
+		
+	
 		
 	}
 
@@ -52,12 +77,12 @@ public class Alumno implements Comparable<Alumno>{
 	
 	@Override
 	public boolean equals (Object o) {
-		if (o instanceof Alumno)
-			if (((Alumno) o).getNroLibreta() == this.nroLibreta)
-				return true;
-			else
-				return false;
+		
+		if ((o instanceof Alumno) && ((((Alumno) o).getNroLibreta()).equals(this.getNroLibreta()) )) 
+			
+			return true;
 		else
+		
 			return false;
 	}
 
