@@ -24,6 +24,11 @@ public class Curso {
 	private Integer creditos;
 	private Integer creditosRequeridos;
 	
+	public Integer getCreditos() {
+		return creditos;
+	}
+
+
 	private Registro log;
 	
 	public Curso() {
