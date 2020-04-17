@@ -2,6 +2,7 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -62,12 +63,21 @@ public class Curso {
 	 */
 	public Boolean inscribir(Alumno a) {
 		try {
-			log.registrar(this, "inscribir ",a.toString());
+			
+			//verificar si el alumno cuenta con los creditos requeridos creditosObtenidos()
+			if (a.creditosObtenidos() > this.creditosRequeridos && this.inscriptos.size()<this.cupo) {
+				a.inscripcionAceptada(this);
+				inscriptos.add(a);
+				log.registrar(this, "inscribir ",a.toString());
+				return true;
+			}
+			else
+				return false;
+				
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 	
 	
@@ -76,9 +86,33 @@ public class Curso {
 	 */
 	public void imprimirInscriptos() {
 		try {
+			Collections.sort(inscriptos);
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * imprime los inscriptos ordenados segun libreta universitaria
+	 */
+	public void imprimirInscriptosLU() {
+		try {
+			inscriptos.sort(new ComparaAlumnoLU());
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * imprime los inscriptos ordenados segun creditos obtenidos
+	 */
+	public void imprimirInscriptosCreditos() {
+		try {
+			inscriptos.sort(new ComparaAlumnoCreditos());
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

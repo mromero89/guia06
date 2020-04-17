@@ -48,9 +48,6 @@ public class Alumno implements Comparable<Alumno>{
 				b = true;
 			}
 
-			/*else if (b == false)
-				System.out.println("No se encontraba inscripto al curso");*/
-						
 			
 		}
 		
@@ -87,7 +84,6 @@ public class Alumno implements Comparable<Alumno>{
 	}
 
 	public int compareTo(Alumno al) {
-		// TODO Auto-generated method stub
 		return this.nombre.compareTo(al.getNombre());
 	}
 	
