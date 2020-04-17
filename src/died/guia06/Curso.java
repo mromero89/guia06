@@ -44,7 +44,21 @@ public class Curso {
 	}
 	
 	public Curso(Integer id) {
+		super();
+		this.inscriptos = new ArrayList<Alumno>();
+		this.log = new Registro();
 		this.id = id;
+	}
+	
+	public Curso(int id, String nombre, int cupo, int creditos, int credReq) {
+		super();
+		this.inscriptos = new ArrayList<Alumno>();
+		this.log = new Registro();
+		this.id = id;
+		this.nombre = nombre;
+		this.cupo = cupo;
+		this.creditos = creditos;
+		this.creditosRequeridos = credReq;
 	}
 	
 	
@@ -95,16 +109,18 @@ public class Curso {
 	 */
 	public Boolean inscribir(Alumno a) {
 		try {
-			
 			//verificar si el alumno cuenta con los creditos requeridos creditosObtenidos()
-			if ((a.creditosObtenidos() >= this.creditosRequeridos) && (this.inscriptos.size()<this.cupo)) {
+			if ((a.creditosObtenidos() >= this.creditosRequeridos) && (this.inscriptos.size()<this.cupo) && (a.cantidadCursando()<3)) {
 				a.inscripcionAceptada(this);
 				inscriptos.add(a);
 				log.registrar(this, "inscribir ",a.toString());
 				return true;
 			}
-			else
+			else {
+				System.out.println("no se pudo inscribir el alumno "+a.getNombre()+" al curso "+this.nombre);
 				return false;
+			}
+				
 				
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -159,6 +175,10 @@ public class Curso {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void aprobar(Alumno a) {
+		inscriptos.remove(a);
 	}
 
 

@@ -47,6 +47,7 @@ public class Alumno implements Comparable<Alumno>{
 		for(Curso cu : cursando) {
 			if (cu.getId().equals(c.getId().intValue())) {				
 				aprobados.add(c);
+				c.aprobar(this);
 				b = true;
 			}
 
@@ -89,5 +90,8 @@ public class Alumno implements Comparable<Alumno>{
 		return this.nombre.compareTo(al.getNombre());
 	}
 	
+	public int cantidadCursando() {
+		return cursando.size();
+	}
 
 }
