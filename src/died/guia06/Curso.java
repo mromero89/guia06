@@ -47,6 +47,38 @@ public class Curso {
 		this.id = id;
 	}
 	
+	
+	
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public void setCicloLectivo(Integer cicloLectivo) {
+		this.cicloLectivo = cicloLectivo;
+	}
+
+
+	public void setCupo(Integer cupo) {
+		this.cupo = cupo;
+	}
+
+
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
+
+
+	public void setCreditosRequeridos(Integer creditosRequeridos) {
+		this.creditosRequeridos = creditosRequeridos;
+	}
+
 
 	/**
 	 * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
@@ -65,7 +97,7 @@ public class Curso {
 		try {
 			
 			//verificar si el alumno cuenta con los creditos requeridos creditosObtenidos()
-			if (a.creditosObtenidos() > this.creditosRequeridos && this.inscriptos.size()<this.cupo) {
+			if ((a.creditosObtenidos() >= this.creditosRequeridos) && (this.inscriptos.size()<this.cupo)) {
 				a.inscripcionAceptada(this);
 				inscriptos.add(a);
 				log.registrar(this, "inscribir ",a.toString());
@@ -87,6 +119,10 @@ public class Curso {
 	public void imprimirInscriptos() {
 		try {
 			Collections.sort(inscriptos);
+			System.out.println("Imprimiendo alumnos inscriptos por orden alfabetico:");
+			for (Alumno al : inscriptos) {
+				System.out.println("Alumno: "+al.getNombre()+" LU: "+al.getNroLibreta()+" Creditos: "+al.creditosObtenidos());
+			}
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -99,6 +135,10 @@ public class Curso {
 	public void imprimirInscriptosLU() {
 		try {
 			inscriptos.sort(new ComparaAlumnoLU());
+			System.out.println("Imprimiendo alumnos inscriptos por orden de Libreta Universitaria:");
+			for (Alumno al : inscriptos) {
+				System.out.println("Alumno: "+al.getNombre()+" LU: "+al.getNroLibreta()+" Creditos: "+al.creditosObtenidos());
+			}
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -111,6 +151,10 @@ public class Curso {
 	public void imprimirInscriptosCreditos() {
 		try {
 			inscriptos.sort(new ComparaAlumnoCreditos());
+			System.out.println("Imprimiendo alumnos inscriptos por orden de Creditos Obtenidos:");
+			for (Alumno al : inscriptos) {
+				System.out.println("Alumno: "+al.getNombre()+" LU: "+al.getNroLibreta()+" Creditos: "+al.creditosObtenidos());
+			}
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
 			e.printStackTrace();

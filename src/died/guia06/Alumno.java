@@ -20,6 +20,8 @@ public class Alumno implements Comparable<Alumno>{
 	public Alumno(String nombre, Integer lu) {
 		this.nombre = nombre;
 		this.nroLibreta = lu;
+		cursando = new ArrayList<Curso>();
+		aprobados = new ArrayList<Curso>();
 	}
 
 	public String getNombre() {
