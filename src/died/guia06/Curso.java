@@ -128,32 +128,6 @@ public class Curso {
 		}
 	}
 	
-	public void inscribirAlumno(Alumno a) throws CreditosRequeridosException, CupoCubiertoException, LimiteMateriasException, RegistroAuditoriaException {
-		try {
-			
-			
-			if (!(a.creditosObtenidos() >= this.creditosRequeridos))
-				throw new CreditosRequeridosException();
-			if (!(this.inscriptos.size()<this.cupo)) 
-				throw new CupoCubiertoException();
-			if (!(a.cantidadCursando()<3))
-				throw new LimiteMateriasException();
-			
-			
-			
-			a.inscripcionAceptada(this);
-			inscriptos.add(a);
-			log.registrar(this, "inscribir ",a.toString());
-			
-			
-				
-		} catch (IOException e) {
-			
-			throw new RegistroAuditoriaException();
-			
-		}
-	}
-	
 	
 	/**
 	 * imprime los inscriptos en orden alfabetico
