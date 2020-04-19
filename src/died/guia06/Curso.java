@@ -133,11 +133,11 @@ public class Curso {
 
 
 			if (!(a.creditosObtenidos() >= this.creditosRequeridos))
-				throw new CreditosRequeridosException();
+				throw new CreditosRequeridosException(a.getNombre());
 			if (!(this.inscriptos.size()<this.cupo)) 
-				throw new CupoCubiertoException();
+				throw new CupoCubiertoException(a.getNombre());
 			if (!(a.cantidadCursando()<3))
-				throw new LimiteMateriasException();
+				throw new LimiteMateriasException(a.getNombre());
 
 
 

@@ -2,9 +2,9 @@ package died.guia06;
 
 public class CreditosRequeridosException extends Exception {
 
-	public CreditosRequeridosException() {
+	public CreditosRequeridosException(String a) {
 
-		super("No se poseen los créditos requeridos para este curso.");
+		super("Problema con: "+a+". No se poseen los créditos requeridos para este curso.");
 	}
 
 }
