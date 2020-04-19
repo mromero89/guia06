@@ -4,7 +4,6 @@ public class App {
 	
 	
 	// public Curso(int id, String nombre, int cupo, int creditos, int credReq)
-
 	public static void main(String[] args) {
 		Curso adm = new Curso(1, "administracion", 5, 10, 0);
 		Curso red = new Curso(2, "redes", 3, 5, 1);
@@ -132,5 +131,4 @@ public class App {
 		
 
 	}
-
 }
